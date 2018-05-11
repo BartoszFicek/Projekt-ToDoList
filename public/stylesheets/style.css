@@ -48,5 +48,20 @@ body
 #sukces
 {
 	font-size:15px;
+	font-weight: bold;
+	letter-spacing:1px;
 	float:right;
+	padding:3px;
+	
 }
+
+#obok
+{
+	font-size:18px;
+	font-weight: bold;
+	letter-spacing:1px;
+	float:left;
+	text-align: center;
+	padding:2px;
+}
+
