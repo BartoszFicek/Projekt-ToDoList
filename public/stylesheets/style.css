@@ -1,0 +1,52 @@
+
+body
+{
+	font-family: 'Slabo 27px', serif;
+}
+
+#witaj
+{
+	text-align: center;
+	font-size: 35px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	word-spacing:2px;
+	color: white;
+	background-color:#222222;
+	padding:5px;
+}
+#witaj:hover
+{
+	cursor:default;
+}
+
+#przycisk
+{
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	word-spacing:2px;
+	color: white;
+	background-color:#222222;
+	padding:5px;
+	margin-top:10px;
+	max-width:300px;
+}
+
+#lista
+{
+	font-size: 20px;
+	font-family: 'Slabo 27px', serif;
+	margin-top: 10px;
+}
+#lista:hover
+{
+	cursor:default;
+}
+
+#sukces
+{
+	font-size:15px;
+	float:right;
+}
