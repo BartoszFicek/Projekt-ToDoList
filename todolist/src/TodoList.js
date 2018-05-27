@@ -25,6 +25,7 @@ class TodoList extends Component {
 	  if (this._inputElement.value !== "") {
     var newItem = {
       text: this._inputElement.value,
+	  priorytet: this._inputPriorytet.value,
       key: Date.now()
     };
  
@@ -35,7 +36,9 @@ class TodoList extends Component {
     });
    
     this._inputElement.value = "";
+	this._inputPriorytet.value = 1;
   }
+  else{alert("Zapomniałeś wpisać treść zadania !")}
    
   console.log(this.state.items);
      
@@ -63,7 +66,8 @@ class TodoList extends Component {
 			<div className="col-12 row justify-content-center" id="lista">
         <div className="col-12 row justify-content-center ">
           <form className="col-12 row justify-content-center" onSubmit={this.addItem}>
-    <select class="form-control col-2 priorytet" id="exampleFormControlSelect1">
+    <select class="form-control col-3 priorytet" id="exampleFormControlSelect1"
+		ref={(a) => this._inputPriorytet = a}>
       <option>1</option>
       <option>2</option>
       <option>3</option>

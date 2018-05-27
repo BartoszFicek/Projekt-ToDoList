@@ -15,7 +15,12 @@ class TodoItems extends Component {
 	
 	
   createTasks(item) {
-    return <li onClick={() => this.delete(item.key)} className="list-group-item" id="kolor" key={item.key}>{item.text}</li>
+    return <li onClick={() => this.delete(item.key)} className="list-group-item" id="kolor" key={item.key}>
+	<div className="row justify-content-center" >
+	<div className="col-2" id="obok">{item.priorytet}</div>
+	<div className="col-10" id="obok1">{item.text}</div>
+	</div>
+	</li>
   }
  
   render() {
