@@ -63,6 +63,18 @@ class TodoList extends Component {
 			<div className="col-12 row justify-content-center" id="lista">
         <div className="col-12 row justify-content-center ">
           <form className="col-12 row justify-content-center" onSubmit={this.addItem}>
+    <select class="form-control col-2 priorytet" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+	  <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>  
+    </select>
             <input 	className="col-8 form-control" ref={(a) => this._inputElement = a}
 						placeholder="ENTER TASK" id="miejsce"
 						autocomplete="off">
