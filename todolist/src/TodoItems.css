@@ -1,0 +1,24 @@
+.obok {
+    text-align: center;
+    font-weight: bold;
+    float: left;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+.obok1 {
+    text-align: center;
+    font-weight: bold;
+    float: left;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.kolor {
+    background-color: #EDEDED;
+}
+
+.kolor:hover {
+    background-color: #F5757C;
+    cursor: pointer;
+}
