@@ -86,20 +86,20 @@ class TodoList extends Component {
   render() {
     return (
       <div className="col-12 row justify-content-center">
-        <div className="col-12 row justify-content-center lista">
+        <div className="col-12 row justify-content-center TodoList-lista">
           <div className="col-12 row justify-content-center ">
             <form
               className="col-12 row justify-content-center"
               onSubmit={this.addItem}
             >
               <select
-                class="form-control col-3 priorytet"
+                class="form-control col-3 TodoList-priorytet"
                 id="exampleFormControlSelect1"
                 value={this.state.prior_value}
                 onChange={this.handlePriorityChange.bind(this)}
                 
               >
-                <option className="nieWyswietlaj">{undefined}</option>
+                <option className="TodoList-nieWyswietlaj">{undefined}</option>
                 <option> 1 </option>
                 <option> 2 </option>
                 <option> 3 </option>
@@ -112,7 +112,7 @@ class TodoList extends Component {
                 <option> 10 </option>
               </select>
               <input
-                className="col-8 form-control miejsce"
+                className="col-8 form-control TodoList-miejsce"
                 value={this.state.input_value}
                 onChange={this.handleNameChange.bind(this)}
                 

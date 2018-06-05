@@ -1,4 +1,4 @@
-.obok {
+.TodoItem-obok {
     text-align: center;
     font-weight: bold;
     float: left;
@@ -6,7 +6,7 @@
     margin-left: 0px;
 }
 
-.obok1 {
+.TodoItem-obok1 {
     text-align: center;
     font-weight: bold;
     float: left;
@@ -14,11 +14,11 @@
     padding-left: 0px;
 }
 
-.kolor {
+.TodoItem-kolor {
     background-color: #EDEDED;
 }
 
-.kolor:hover {
+.TodoItem-kolor:hover {
     background-color: #F5757C;
     cursor: pointer;
 }

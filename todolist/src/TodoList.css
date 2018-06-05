@@ -13,7 +13,7 @@
     float: left;
 }
 
-.miejsce {
+.TodoList-miejsce {
     color: black;
     text-align: center;
     font-size: 20px;
@@ -28,7 +28,7 @@
     min-height: 50px;
 }
 
-.priorytet {
+.TodoList-priorytet {
     color: black;
     text-align: center center;
     font-size: 20px;
@@ -42,6 +42,6 @@
     max-width: 55px;
 }
 
-.nieWyswietlaj{
+.TodoList-nieWyswietlaj{
     display:none;
 }
