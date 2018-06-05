@@ -1,4 +1,4 @@
-.witaj {
+.AppHeader-tittle {
     text-align: center;
     font-size: 35px;
     font-weight: bold;
@@ -9,6 +9,6 @@
     padding: 5px;
 }
 
-.witaj:hover {
+.AppHeader-tittle:hover {
     cursor: default;
 }
