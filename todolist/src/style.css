@@ -2,15 +2,3 @@ body {
   font-family: "Slabo 27px", serif;
   margin: 0 !important;
 }
-
-.lista {
-  text-align: center;
-  font-weight: bold;
-  font-size: 20px;
-  font-family: "Slabo 27px", serif;
-  margin-top: 10px;
-}
-
-.lista:hover {
-  cursor: default;
-}

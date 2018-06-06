@@ -1,0 +1,11 @@
+.TodoItems-lista {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: "Slabo 27px", serif;
+  margin-top: 10px;
+}
+
+.TodoItems-:hover {
+  cursor: default;
+}
