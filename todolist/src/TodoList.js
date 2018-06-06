@@ -8,80 +8,61 @@ class TodoList extends Component {
 
     this.state = {
       items: [],
-      priorytet: 1,
-      text: ""
+      input_value: "",
+      prior_value: 1
     };
-
-    this.addItem = this.addItem.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
   }
 
   delete(key) {
     this.props.delete(key);
   }
- 
-  addItem(e) {
-    // console.log(this.state.input_value);
-    // console.log(this.state.prior_value);
 
+  addItem = e => {
     if (this.state.input_value !== "") {
+      if (this.state.prior_value !== undefined) {
+        let newItem = {
+          text: this.state.input_value,
+          priorytet: this.state.prior_value,
+          key: Date.now()
+        };
 
-        if(this.state.prior_value !== undefined){
-            let newItem = {
-                text: this.state.input_value,
-                priorytet: this.state.prior_value,
-                key: Date.now()
-              };
-        
-              this.setState(prevState => {
-                return {
-                  items: prevState.items.concat(newItem),
-                  input_value:"",
-                  prior_value:1,
-                };
-              });
-        }          
-        else
-        {
-            alert("Wybierz priorytet dla zadania !")
-        }
-       
-    } 
-    
-    else {
+        this.setState(prevState => {
+          return {
+            items: prevState.items.concat(newItem),
+            input_value: "",
+            prior_value: 1
+          };
+        });
+      } else {
+        alert("Wybierz priorytet dla zadania !");
+      }
+    } else {
       alert("Uzupełnij treść zadania !");
     }
 
-    // console.log(this.state.items);
-
     e.preventDefault();
-  }
+  };
 
-  deleteItem(key) {
+  deleteItem = key => {
     this.setState(prevState => {
       return {
         items: prevState.items.filter(item => item.key !== key)
       };
     });
-  }
+  };
 
   handleNameChange(e) {
-    let new_name = e.target.value
-    this.setState(
-        state => {
-            return ({ ...state, input_value: new_name })
-        }
-    );
+    let new_name = e.target.value;
+    this.setState(() => {
+      return { input_value: new_name };
+    });
   }
   handlePriorityChange(e) {
-    let new_prior = e.target.value
-    this.setState(
-        state => {
-            return ({ ...state, prior_value: new_prior })
-        }
-    );
+    let new_prior = e.target.value;
+    this.setState(() => {
+      return { prior_value: new_prior };
+    });
   }
-  
 
   render() {
     return (
@@ -97,9 +78,7 @@ class TodoList extends Component {
                 id="exampleFormControlSelect1"
                 value={this.state.prior_value}
                 onChange={this.handlePriorityChange.bind(this)}
-                
               >
-                <option className="TodoList-nieWyswietlaj">{undefined}</option>
                 <option> 1 </option>
                 <option> 2 </option>
                 <option> 3 </option>
@@ -115,11 +94,13 @@ class TodoList extends Component {
                 className="col-8 form-control TodoList-miejsce"
                 value={this.state.input_value}
                 onChange={this.handleNameChange.bind(this)}
-                
                 placeholder="ENTER TASK"
                 autocomplete="off"
               />
-              <button className="btn btn-primary col-2 TodoList-przycisk" type="submit">
+              <button
+                className="btn btn-primary col-2 TodoList-przycisk"
+                type="submit"
+              >
                 {" "}
                 ADD{" "}
               </button>

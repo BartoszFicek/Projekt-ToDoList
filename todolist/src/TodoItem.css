@@ -1,24 +1,24 @@
 .TodoItem-obok {
-    text-align: center;
-    font-weight: bold;
-    float: left;
-    padding-left: 0px;
-    margin-left: 0px;
+  text-align: center;
+  font-weight: bold;
+  float: left;
+  padding-left: 0px;
+  margin-left: 0px;
 }
 
 .TodoItem-obok1 {
-    text-align: center;
-    font-weight: bold;
-    float: left;
-    margin-left: 0px;
-    padding-left: 0px;
+  text-align: center;
+  font-weight: bold;
+  float: left;
+  margin-left: 0px;
+  padding-left: 0px;
 }
 
 .TodoItem-kolor {
-    background-color: #EDEDED;
+  background-color: #ededed;
 }
 
 .TodoItem-kolor:hover {
-    background-color: #F5757C;
-    cursor: pointer;
+  background-color: #f5757c;
+  cursor: pointer;
 }

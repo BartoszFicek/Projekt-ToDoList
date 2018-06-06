@@ -1,25 +1,22 @@
 import React, { Component } from "react";
-import TodoItem from "./ToDoItem"
+import TodoItem from "./ToDoItem";
 
 class TodoItems extends Component {
+  delete = key => {
+    this.props.delete(key);
+  };
 
-    constructor(props) {
-        super(props);
-    }
+  render() {
+    let todoEntries = this.props.entries;
 
-    delete(key) {
-        this.props.delete(key);
-    }
-
-    render() {
-        let todoEntries = this.props.entries;
-
-        return ( <ul className = "list-group col-10 lista" > 
-            { todoEntries.map((item) => <TodoItem {...item} dkey={item.key} onDelete={this.delete.bind(this)} />) }
-            
-            </ul>
-        );
-    }
-};
+    return (
+      <ul className="list-group col-10 lista">
+        {todoEntries.map(item => (
+          <TodoItem {...item} id={item.key} onDelete={this.delete} />
+        ))}
+      </ul>
+    );
+  }
+}
 
 export default TodoItems;
