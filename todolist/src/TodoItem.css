@@ -14,11 +14,52 @@
   padding-left: 0px;
 }
 
-.TodoItem-kolor {
+.TodoItem-menu-zadania {
   background-color: #ededed;
 }
 
-.TodoItem-kolor:hover {
-  background-color: #f5757c;
+.TodoItem-menu-zadania:hover {
+  background-color: #daf3ff;
   cursor: pointer;
+}
+
+.TodoItem-menu-zadania:hover .TodoItem-przycisk-usun {
+  visibility: visible;
+}
+
+.TodoItem-przycisk-usun {
+  visibility: hidden;
+  font-size: 20px;
+  padding: 0px;
+  background-color: rgb(255, 160, 160);
+  margin: 0px;
+  border: none;
+  color: black;
+  border-radius: 90px;
+}
+
+.TodoItem-przycisk-usun:hover {
+  background-color: rgb(255, 81, 81);
+  color: white;
+}
+
+.TodoItem-menu-zadania:hover .TodoItem-przycisk-zrobione {
+  visibility: visible;
+}
+
+.TodoItem-przycisk-zrobione {
+  visibility: hidden;
+  font-size: 20px;
+  background-color: rgb(102, 255, 153);
+  border: none;
+  color: black;
+  border-radius: 90px;
+  transform: scale(2);
+  padding: 5px;
+  margin-top: 2%;
+}
+
+input[type="checkbox"]:checked + div span {
+  text-decoration: line-through;
+  color: #797575;
 }

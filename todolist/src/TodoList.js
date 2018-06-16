@@ -23,7 +23,8 @@ class TodoList extends Component {
         let newItem = {
           text: this.state.input_value,
           priorytet: this.state.prior_value,
-          key: Date.now()
+          key: Date.now(),
+          done: 0
         };
 
         this.setState(prevState => {
@@ -76,7 +77,7 @@ class TodoList extends Component {
               <select
                 class="form-control col-3 TodoList-priorytet"
                 id="exampleFormControlSelect1"
-                value={this.state.prior_value}
+                value={(this.state.prior_value, this.state.stanik)}
                 onChange={this.handlePriorityChange.bind(this)}
               >
                 <option> 1 </option>
