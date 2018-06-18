@@ -2,19 +2,20 @@ import React, { Component } from "react";
 import TodoItems from "./TodoItems";
 import "./TodoList.css";
 
+const VISIBLE = 1;
+const INVISIBLE = -1;
+
 class TodoList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       items: [],
+      kopia: [],
       input_value: "",
-      prior_value: 1
+      prior_value: 1,
+      done_value: -1
     };
-  }
-
-  delete(key) {
-    this.props.delete(key);
   }
 
   addItem = e => {
@@ -24,12 +25,13 @@ class TodoList extends Component {
           text: this.state.input_value,
           priorytet: this.state.prior_value,
           key: Date.now(),
-          done: 0
+          done: this.state.done_value
         };
 
         this.setState(prevState => {
           return {
             items: prevState.items.concat(newItem),
+            kopia: prevState.items.concat(newItem),
             input_value: "",
             prior_value: 1
           };
@@ -40,22 +42,42 @@ class TodoList extends Component {
     } else {
       alert("Uzupełnij treść zadania !");
     }
-
+    console.log(this.state.items);
     e.preventDefault();
+  };
+
+  delete(key) {
+    this.props.delete(key);
+  }
+
+  donen(key) {
+    this.props.donen(key);
+  }
+  doneItem = key => {
+    var newItems = this.state.items.slice();
+    let index = newItems.findIndex(item => item.key == key);
+    newItems[index].done =
+      newItems[index].done == VISIBLE ? INVISIBLE : VISIBLE;
+    this.setState({ ...this.setState, items: newItems });
+    console.log(this.state.items);
   };
 
   deleteItem = key => {
     this.setState(prevState => {
       return {
-        items: prevState.items.filter(item => item.key !== key)
+        items: prevState.items.filter(item => item.key !== key),
+        kopia: prevState.kopia.filter(item => item.key !== key)
       };
     });
+    console.log(this.state.items, this.state.kopia);
   };
 
   handleNameChange(e) {
     let new_name = e.target.value;
     this.setState(() => {
-      return { input_value: new_name };
+      return {
+        input_value: new_name
+      };
     });
   }
   handlePriorityChange(e) {
@@ -75,9 +97,9 @@ class TodoList extends Component {
               onSubmit={this.addItem}
             >
               <select
-                class="form-control col-3 TodoList-priorytet"
+                className="form-control col-3 TodoList-priorytet"
                 id="exampleFormControlSelect1"
-                value={(this.state.prior_value, this.state.stanik)}
+                value={this.state.prior_value}
                 onChange={this.handlePriorityChange.bind(this)}
               >
                 <option> 1 </option>
@@ -96,7 +118,7 @@ class TodoList extends Component {
                 value={this.state.input_value}
                 onChange={this.handleNameChange.bind(this)}
                 placeholder="ENTER TASK"
-                autocomplete="off"
+                autoComplete="off"
               />
               <button
                 className="btn btn-primary col-2 TodoList-przycisk"
@@ -106,8 +128,73 @@ class TodoList extends Component {
                 ADD{" "}
               </button>
             </form>
+            <div className="col-12 row justify-content-center TodoList-wybor">
+              <div className="form-check form-check-inline">
+                <input
+                  onClick={() =>
+                    this.setState(prevState => {
+                      return {
+                        items: prevState.kopia.filter(
+                          item => item.done == 1 || item.done == -1
+                        )
+                      };
+                    })
+                  }
+                  className="form-check-input TodoList-wybrane"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio1"
+                  value="option1"
+                />
+                <label className="form-check-label" htmlFor="inlineRadio1">
+                  Wyświetl wszystkie zadania
+                </label>
+              </div>
+              <div className="form-check form-check-inline">
+                <input
+                  onClick={() =>
+                    this.setState(prevState => {
+                      return {
+                        items: prevState.kopia.filter(item => item.done == -1)
+                      };
+                    })
+                  }
+                  className="form-check-input TodoList-wybrane"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio2"
+                  value="option2"
+                />
+                <label className="form-check-label" htmlFor="inlineRadio2">
+                  Wyświetl zadania aktywne
+                </label>
+              </div>
+              <div className="form-check form-check-inline">
+                <input
+                  onClick={() =>
+                    this.setState(prevState => {
+                      return {
+                        items: prevState.kopia.filter(item => item.done == 1)
+                      };
+                    })
+                  }
+                  className="form-check-input TodoList-wybrane"
+                  type="radio"
+                  name="inlineRadioOptions"
+                  id="inlineRadio3"
+                  value="option3"
+                />
+                <label className="form-check-label" htmlFor="inlineRadio3">
+                  Wyświetl zadania wykonane
+                </label>
+              </div>
+            </div>
           </div>
-          <TodoItems entries={this.state.items} delete={this.deleteItem} />
+          <TodoItems
+            entries={this.state.items}
+            delete={this.deleteItem}
+            donen={this.doneItem.bind(this)}
+          />
         </div>
       </div>
     );

@@ -41,3 +41,15 @@
   min-height: 52px;
   max-width: 55px;
 }
+
+.TodoList-wybrane {
+  color: black;
+  transform: scale(2);
+  margin-top: 10px;
+  font-family: "Slabo 27px", serif;
+  font-weight: bold;
+}
+
+.TodoList-wybor {
+  margin-top: 10px;
+}
