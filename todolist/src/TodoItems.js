@@ -13,7 +13,12 @@ class TodoItems extends Component {
     return (
       <ul className="list-group col-10 TodoItems-lista">
         {todoEntries.map(item => (
-          <TodoItem {...item} id={item.key} onDelete={this.delete} />
+          <TodoItem
+            {...item}
+            id={item.key}
+            onDelete={this.delete}
+            onDone={this.props.donen}
+          />
         ))}
       </ul>
     );
