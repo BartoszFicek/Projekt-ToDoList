@@ -5,6 +5,15 @@ import "./TodoList.css";
 const VISIBLE = true;
 const INVISIBLE = false;
 
+function filterItems(items, filter) {
+  return items.filter(item => {
+    if (filter == "ACTIVE" && item.done == false) return true;
+    else if (filter == "NONE") return true;
+    else if (filter == "COMPLETED" && item.done == true) return true;
+    else return false;
+  });
+}
+
 class TodoList extends Component {
   constructor(props) {
     super(props);
@@ -52,6 +61,7 @@ class TodoList extends Component {
   donen(key) {
     this.props.donen(key);
   }
+
   doneItem = key => {
     this.setState(state => {
       var newItems = state.items.slice();
@@ -194,14 +204,7 @@ class TodoList extends Component {
             </div>
           </div>
           <TodoItems
-            entries={this.state.items.filter(item => {
-              if (this.state.filter == "ACTIVE" && item.done == false)
-                return true;
-              else if (this.state.filter == "NONE") return true;
-              else if (this.state.filter == "COMPLETED" && item.done == true)
-                return true;
-              else return false;
-            })}
+            entries={filterItems(this.state.items, this.state.filter)}
             delete={this.deleteItem}
             donen={this.doneItem.bind(this)}
           />
