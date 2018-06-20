@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import TodoItems from "./TodoItems";
 import "./TodoList.css";
 
-const VISIBLE = 1;
-const INVISIBLE = -1;
+const VISIBLE = true;
+const INVISIBLE = false;
 
 class TodoList extends Component {
   constructor(props) {
@@ -11,10 +11,10 @@ class TodoList extends Component {
 
     this.state = {
       items: [],
-      kopia: [],
+      filter: "NONE",
       input_value: "",
       prior_value: 1,
-      done_value: -1
+      done_value: INVISIBLE
     };
   }
 
@@ -31,7 +31,6 @@ class TodoList extends Component {
         this.setState(prevState => {
           return {
             items: prevState.items.concat(newItem),
-            kopia: prevState.items.concat(newItem),
             input_value: "",
             prior_value: 1
           };
@@ -42,7 +41,7 @@ class TodoList extends Component {
     } else {
       alert("Uzupełnij treść zadania !");
     }
-    console.log(this.state.items);
+
     e.preventDefault();
   };
 
@@ -54,22 +53,23 @@ class TodoList extends Component {
     this.props.donen(key);
   }
   doneItem = key => {
-    var newItems = this.state.items.slice();
-    let index = newItems.findIndex(item => item.key == key);
-    newItems[index].done =
-      newItems[index].done == VISIBLE ? INVISIBLE : VISIBLE;
-    this.setState({ ...this.setState, items: newItems });
-    console.log(this.state.items);
+    this.setState(state => {
+      var newItems = state.items.slice();
+      let index = newItems.findIndex(item => item.key == key);
+      newItems[index].done =
+        newItems[index].done == VISIBLE ? INVISIBLE : VISIBLE;
+      return { items: newItems };
+    });
+    // console.log(this.state.items);
   };
 
   deleteItem = key => {
     this.setState(prevState => {
       return {
-        items: prevState.items.filter(item => item.key !== key),
-        kopia: prevState.kopia.filter(item => item.key !== key)
+        items: prevState.items.filter(item => item.key !== key)
       };
     });
-    console.log(this.state.items, this.state.kopia);
+    // console.log(this.state.items, this.state.kopia);
   };
 
   handleNameChange(e) {
@@ -128,15 +128,16 @@ class TodoList extends Component {
                 ADD{" "}
               </button>
             </form>
+
             <div className="col-12 row justify-content-center TodoList-wybor">
               <div className="form-check form-check-inline">
                 <input
                   onClick={() =>
                     this.setState(prevState => {
+                      // console.log("all", copy, all, completed, active);
                       return {
-                        items: prevState.kopia.filter(
-                          item => item.done == 1 || item.done == -1
-                        )
+                        ...prevState,
+                        filter: "NONE"
                       };
                     })
                   }
@@ -154,8 +155,10 @@ class TodoList extends Component {
                 <input
                   onClick={() =>
                     this.setState(prevState => {
+                      // console.log("active", copy, all, completed, active);
                       return {
-                        items: prevState.kopia.filter(item => item.done == -1)
+                        ...prevState,
+                        filter: "ACTIVE"
                       };
                     })
                   }
@@ -173,8 +176,10 @@ class TodoList extends Component {
                 <input
                   onClick={() =>
                     this.setState(prevState => {
+                      // console.log("completed", copy, all, completed, active);
                       return {
-                        items: prevState.kopia.filter(item => item.done == 1)
+                        ...prevState,
+                        filter: "COMPLETED"
                       };
                     })
                   }
@@ -191,7 +196,14 @@ class TodoList extends Component {
             </div>
           </div>
           <TodoItems
-            entries={this.state.items}
+            entries={this.state.items.slice().filter(item => {
+              if (this.state.filter == "ACTIVE" && item.done == false)
+                return true;
+              else if (this.state.filter == "NONE") return true;
+              else if (this.state.filter == "COMPLETED" && item.done == true)
+                return true;
+              else return false;
+            })}
             delete={this.deleteItem}
             donen={this.doneItem.bind(this)}
           />
