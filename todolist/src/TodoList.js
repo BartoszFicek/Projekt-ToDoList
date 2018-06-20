@@ -80,6 +80,7 @@ class TodoList extends Component {
       };
     });
   }
+
   handlePriorityChange(e) {
     let new_prior = e.target.value;
     this.setState(() => {
@@ -133,10 +134,9 @@ class TodoList extends Component {
               <div className="form-check form-check-inline">
                 <input
                   onClick={() =>
-                    this.setState(prevState => {
+                    this.setState(() => {
                       // console.log("all", copy, all, completed, active);
                       return {
-                        ...prevState,
                         filter: "NONE"
                       };
                     })
@@ -154,10 +154,9 @@ class TodoList extends Component {
               <div className="form-check form-check-inline">
                 <input
                   onClick={() =>
-                    this.setState(prevState => {
+                    this.setState(() => {
                       // console.log("active", copy, all, completed, active);
                       return {
-                        ...prevState,
                         filter: "ACTIVE"
                       };
                     })
@@ -175,10 +174,9 @@ class TodoList extends Component {
               <div className="form-check form-check-inline">
                 <input
                   onClick={() =>
-                    this.setState(prevState => {
+                    this.setState(() => {
                       // console.log("completed", copy, all, completed, active);
                       return {
-                        ...prevState,
                         filter: "COMPLETED"
                       };
                     })
@@ -196,7 +194,7 @@ class TodoList extends Component {
             </div>
           </div>
           <TodoItems
-            entries={this.state.items.slice().filter(item => {
+            entries={this.state.items.filter(item => {
               if (this.state.filter == "ACTIVE" && item.done == false)
                 return true;
               else if (this.state.filter == "NONE") return true;
